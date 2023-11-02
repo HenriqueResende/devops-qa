@@ -1,0 +1,54 @@
+<html>
+	<head>
+<meta charset="UTF-8" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		 <meta name="viewport" content="width=device-width, initial-scale=1">	
+			</head>
+</head>	
+	<body onload="onLoad()">
+		
+	
+		<div class="container" id="webUsuarios">
+			
+		<h3>Lista de Usuários</h3>				
+			<div class="card mb-3" v-for ="usuario in usuarios">
+			<div class="card-body">
+					<div class="row">
+					<div class="col-12 col-sm-8 mb-3">
+				<div>Identificação</div> 
+				<div class="card-header alert-dark">{{usuario.id}}</div>
+				<div>Nome</div> 
+				<div class="card-header alert-dark">{{usuario.nome}}</div>
+				<div>Email</div> 
+				<div class="card-header alert-dark">{{usuario.email}}</div>
+				<div>Senha</div> 
+				<div class="card-header alert-dark">{{usuario.senha}}</div>
+				<div>
+				<button class="btn btn-primary btn-lg">Listar mais</button>
+				</div>
+				</div>
+				</div>
+				
+				
+			</div>
+		</div>
+		<script>
+			function onLoad() {
+				var app = new Vue(
+				{
+					el : '#webUsuarios',
+					data : {
+						usuarios : []
+					},
+					mounted () {
+						axios
+					      .get('http://localhost:8081/usuarios')
+					      .then(response => (this.usuarios = response.data))
+					}
+				});
+			}
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</body>
+</html>
