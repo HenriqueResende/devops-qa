@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Curso {
@@ -15,8 +16,11 @@ public class Curso {
 	private Boolean finalizado;
 
 	public Curso() {
+		setNome("Default");
+		setNota(-1);
+		setFinalizado(false);
 	}
-
+	
 	public Curso(String nome) {
 		setNome(nome);
 		setNota(-1);
@@ -78,16 +82,16 @@ public class Curso {
 		this.nota = nota;
 	}
 
-	public void FinalizarCurso(float nota) {
-		setNota(nota);
-		setFinalizado(true);
-	}
-
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public void FinalizarCurso(float nota) {
+		setNota(nota);
+		setFinalizado(true);
 	}
 }
