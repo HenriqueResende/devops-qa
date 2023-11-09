@@ -78,7 +78,7 @@ public class Curso {
 		this.nome = nome;
 	}
 
-	private void setNota(float nota) {
+	public void setNota(float nota) {
 		this.nota = nota;
 	}
 

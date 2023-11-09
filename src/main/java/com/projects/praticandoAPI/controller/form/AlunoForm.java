@@ -10,18 +10,8 @@ import com.projects.praticandoAPI.repository.AlunoRepository;
 import com.projects.praticandoAPI.repository.CursoRepository;
 
 public class AlunoForm {
-	private Long id;
 	private String nome;
 	private List<String> cursos = new ArrayList<String>();
-	
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 	
 	public String getNome() {
 		return nome;
