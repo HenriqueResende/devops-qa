@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  database:
+  database_stage:
     image: postgres
     environment:
       POSTGRES_PASSWORD: postgres
@@ -9,10 +9,10 @@ services:
     volumes:
     - db-volume:/var/lib/postgresql/data
 
-  api:
-    image: lelesd2m2s10/praticando-api
+  api_stage:
+    image: henres3605/praticando-api
     environment:
-      DB_HOST: database
+      DB_HOST: database_stage
     ports:
       - "9090:9090"
 volumes:
