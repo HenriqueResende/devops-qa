@@ -27,6 +27,8 @@ pipeline {
         script {
           def containerIds = sh(returnStdout: true, script: 'docker compose -f docker-compose.yml ps -q').trim().split('\n')
           def desiredContainerId = containerIds[0] 
+          sh "docker exec '${desiredContainerId}' apt-get update"
+          sh "docker exec '${desiredContainerId}' apt-get update"
           sh "docker exec '${desiredContainerId}' curl http://localhost:9090"
         }
       }
