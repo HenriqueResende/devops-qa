@@ -15,6 +15,8 @@ pipeline {
       steps {
         sh 'docker compose -f docker-compose.yml up -d --no-color --wait'
         sh 'docker compose -f docker-compose.yml ps'
+        sh 'RUN apt-get update'
+        sh 'RUN apt-get install -y curl'
       }
     }
     stage('Wait for container') {
