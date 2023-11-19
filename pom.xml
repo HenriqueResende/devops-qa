@@ -16,6 +16,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<start-class>com.projects.praticandoAPI.PraticandoApiApplication</start-class>
 	</properties>
 
 	<dependencies>
@@ -124,12 +125,23 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
-
-       
+      </plugin> 
       
-          
-                
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+            <mainClass>com.projects.praticandoAPI.PraticandoApiApplication</mainClass>
+        </configuration>
+        <executions>
+	    	<execution>
+		        <goals>
+		            <goal>repackage</goal>
+		        </goals>
+		    </execution>
+		</executions>
+    </plugin>
+                   
 </plugins>
 	</build>
 
@@ -163,6 +175,6 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-
+	
 	<packaging>war</packaging>
 </project>
