@@ -34,12 +34,4 @@ pipeline {
       }
     }
   }
-  post {
-    success {
-      
-    }
-    failure {
-      
-    }
-  }
 }
