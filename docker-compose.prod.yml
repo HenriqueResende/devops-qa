@@ -14,6 +14,6 @@ services:
     environment:
       DB_HOST: database_prod
     ports:
-      - "9292:9292"
+      - "8181:9090"
 volumes:
   db-volume:
