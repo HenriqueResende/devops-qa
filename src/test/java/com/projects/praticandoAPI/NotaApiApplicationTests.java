@@ -47,8 +47,9 @@ public class NotaApiApplicationTests {
     public void testGetNotaDefault() throws Exception{        
         mockMvc
             .perform(MockMvcRequestBuilders.get("/Nota?nomeCurso=Python"))            
-            .andExpect(MockMvcResultMatchers.status().isOk())          
-            .andExpect(MockMvcResultMatchers.content().string("{\"nomeCurso\":\"Python\",\"nota\":8.0}"));
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect((ResultMatcher) jsonPath("nota").value("8.0"))
+            .andExpect((ResultMatcher) jsonPath("nomeCurso").value("Python"));
     }
     
 }

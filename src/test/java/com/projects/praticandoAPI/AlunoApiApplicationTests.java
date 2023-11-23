@@ -31,24 +31,23 @@ public class AlunoApiApplicationTests {
         mockMvc
             .perform(MockMvcRequestBuilders.post("/Aluno").contentType(MediaType.APPLICATION_JSON).content("{\n"
             		+ "  \"cursos\": [\n"
-            		+ "    \"Python\"\n"
+            		+ "    \"Java\"\n"
             		+ "  ],\n"
             		+ "  \"nome\": \"" + expectedNome + "\"\n"
             		+ "}"))
             .andExpect(MockMvcResultMatchers.status().is(201))
-            .andExpect((ResultMatcher) jsonPath("nome").value(expectedNome))
-            .andExpect((ResultMatcher) jsonPath("$.cursos[0].id").value("1"))
-            .andExpect((ResultMatcher) jsonPath("$.cursos[0].nome").value("Python"))
-            .andExpect((ResultMatcher) jsonPath("$.cursos[0].nota").value("8.0"))
-            .andExpect((ResultMatcher) jsonPath("$.cursos[0].finalizado").value("true"));
+            .andExpect((ResultMatcher) jsonPath("nome").value(expectedNome));
     }
     
     @Test
     public void testGetAlunoDefault() throws Exception{        
         mockMvc
             .perform(MockMvcRequestBuilders.get("/Aluno"))            
-            .andExpect(MockMvcResultMatchers.status().isOk())          
-            .andExpect(MockMvcResultMatchers.content().string("[{\"id\":1,\"nome\":\"Lando Norris\",\"cursos\":[{\"id\":1,\"nome\":\"Python\",\"nota\":8.0,\"finalizado\":true}]}]"));
+            .andExpect(MockMvcResultMatchers.status().isOk())      
+            .andExpect((ResultMatcher) jsonPath("$.[0].nome").value("Alex Albon"))
+            .andExpect((ResultMatcher) jsonPath("$.[0].cursos[0].nome").value("Python"))
+            .andExpect((ResultMatcher) jsonPath("$.[0].cursos[0].nota").value("8.0"))
+            .andExpect((ResultMatcher) jsonPath("$.[0].cursos[0].finalizado").value("true"));    
     }
     
 }

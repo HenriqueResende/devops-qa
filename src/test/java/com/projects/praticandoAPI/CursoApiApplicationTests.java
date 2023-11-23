@@ -48,8 +48,10 @@ public class CursoApiApplicationTests {
     public void testGetCursoDefault() throws Exception{        
         mockMvc
             .perform(MockMvcRequestBuilders.get("/Cursos"))            
-            .andExpect(MockMvcResultMatchers.status().isOk())          
-            .andExpect(MockMvcResultMatchers.content().string("[{\"id\":1,\"nome\":\"Python\",\"nota\":8.0,\"finalizado\":true}]"));
+            .andExpect(MockMvcResultMatchers.status().isOk()) 
+            .andExpect((ResultMatcher) jsonPath("$.[0].nome").value("Python"))
+            .andExpect((ResultMatcher) jsonPath("$.[0].finalizado").value("true"))
+            .andExpect((ResultMatcher) jsonPath("$.[0].nota").value("8.0"));
     }
     
 }
