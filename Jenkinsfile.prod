@@ -29,7 +29,7 @@ pipeline {
           def desiredContainerId = containerIds[0] 
           sh "docker exec '${desiredContainerId}' apt-get update"
           sh "docker exec '${desiredContainerId}' apt-get update"
-          sh "docker exec '${desiredContainerId}' curl -v http://localhost:9292"
+          sh "docker exec '${desiredContainerId}' curl http://localhost:9090"
         }
       }
     }
