@@ -13,8 +13,8 @@ pipeline {
     }
     stage('Start container') {
       steps {
-        sh 'docker compose -f docker-compose_stage.yml up -d --no-color --wait'
-        sh 'docker compose -f docker-compose_stage.yml ps'
+        sh 'docker compose -f docker-compose.stage.yml up -d --no-color --wait'
+        sh 'docker compose -f docker-compose.stage.yml ps'
       }
     }
     stage('Wait for container') {
@@ -25,7 +25,7 @@ pipeline {
     stage('Run tests against the container') {
       steps {
         script {
-          def containerIds = sh(returnStdout: true, script: 'docker compose -f docker-compose.yml ps -q').trim().split('\n')
+          def containerIds = sh(returnStdout: true, script: 'docker compose -f docker-compose.stage.yml ps -q').trim().split('\n')
           def desiredContainerId = containerIds[0] 
           sh "docker exec '${desiredContainerId}' apt-get update"
           sh "docker exec '${desiredContainerId}' apt-get update"
