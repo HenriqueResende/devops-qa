@@ -13,8 +13,8 @@ pipeline {
     }
     stage('Start container') {
       steps {
-        sh 'docker compose -f docker-compose.yml up -d --no-color --wait'
-        sh 'docker compose -f docker-compose.yml ps'
+        sh 'docker compose -f docker-compose_stage.yml up -d --no-color --wait'
+        sh 'docker compose -f docker-compose_stage.yml ps'
       }
     }
     stage('Wait for container') {
@@ -29,7 +29,7 @@ pipeline {
           def desiredContainerId = containerIds[0] 
           sh "docker exec '${desiredContainerId}' apt-get update"
           sh "docker exec '${desiredContainerId}' apt-get update"
-          sh "docker exec '${desiredContainerId}' curl http://localhost:9090"
+          sh "docker exec '${desiredContainerId}' curl http://localhost:9191"
         }
       }
     }

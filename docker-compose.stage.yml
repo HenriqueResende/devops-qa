@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  database_stage:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: papi
+    volumes:
+    - db-volume:/var/lib/postgresql/data
+
+  api_stage:
+    image: henres3605/praticando-api
+    environment:
+      DB_HOST: database_stage
+    ports:
+      - "9191:9191"
+volumes:
+  db-volume:

@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  database_dev:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: papi
+    volumes:
+    - db-volume:/var/lib/postgresql/data
+
+  api_dev:
+    image: henres3605/praticando-api
+    environment:
+      DB_HOST: database_dev
+    ports:
+      - "9090:9090"
+volumes:
+  db-volume:

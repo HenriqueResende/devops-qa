@@ -1,0 +1,37 @@
+pipeline {
+  agent any
+  stages {
+    stage("verify tooling") {
+      steps {
+        sh '''
+          docker version
+          docker info
+          docker compose version 
+          curl --version
+          '''
+      }
+    }
+    stage('Start container') {
+      steps {
+        sh 'docker compose -f docker-compose_prod.yml up -d --no-color --wait'
+        sh 'docker compose -f docker-compose_prod.yml ps'
+      }
+    }
+    stage('Wait for container') {
+      steps {
+        sh 'sleep 15'
+      }
+    }
+    stage('Run tests against the container') {
+      steps {
+        script {
+          def containerIds = sh(returnStdout: true, script: 'docker compose -f docker-compose.yml ps -q').trim().split('\n')
+          def desiredContainerId = containerIds[0] 
+          sh "docker exec '${desiredContainerId}' apt-get update"
+          sh "docker exec '${desiredContainerId}' apt-get update"
+          sh "docker exec '${desiredContainerId}' curl http://localhost:9292"
+        }
+      }
+    }
+  }
+}
