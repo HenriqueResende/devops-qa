@@ -36,7 +36,7 @@ pipeline {
   }
   post {
     success {
-      slackSend(hannel: "#deploy", color: '#36a64f', message: "Deployment to stage succeeded!", attachments: [
+      slackSend(channel: "#deploy", color: '#36a64f', message: "Deployment to stage succeeded!", attachments: [
         [
           fallback: "Deploy to production",
           actions: [
