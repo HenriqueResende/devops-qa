@@ -36,7 +36,7 @@ pipeline {
   }
   post {
     success {
-      slackSend(channel: "#deploy", color: '#36a64f', message: "O deploy para stage foi realizado com sucesso (http://localhost:9090/swagger-ui.html)! Para subir em produção acesse: http://localhost:8180/job/ac2-prod/build?token=token-jenkins")
+      slackSend(channel: "#deploy", color: '#36a64f', message: "O deploy para stage foi realizado com sucesso (http://localhost:9090/swagger-ui.html)! Para subir em producao acesse: http://localhost:8180/job/ac2-prod/build?token=token-jenkins")
     }
     failure {
       slackSend(channel: "#deploy", color: '#ff0000', message: "O deploy para stage falhou!!")
