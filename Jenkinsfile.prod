@@ -36,10 +36,10 @@ pipeline {
   }
   post {
     success {
-      slackSend(channel: "#deploy", color: '#36a64f', message: "O deploy para produção foi realizado com sucesso (http://localhost:8181/swagger-ui.html)!")
+      slackSend(channel: "#deploy", color: '#36a64f', message: "O deploy para producao foi realizado com sucesso (http://localhost:8181/swagger-ui.html)!")
     }
     failure {
-      slackSend(channel: "#deploy", color: '#ff0000', message: "O deploy para produção falhou!!")
+      slackSend(channel: "#deploy", color: '#ff0000', message: "O deploy para producao falhou!!")
     }
   }
 }
